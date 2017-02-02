@@ -50,7 +50,13 @@ class ShortUrlController extends Controller
     public function visit_url($short_code){
       //return $short_code;
     	$url = ShortUrl::select('long_url')->where('short_code',$short_code)->first();
-        return redirect($url->long_url);
+    	if($url){
+    		return redirect($url->long_url);
+    	}else{
+    	  Session::flash('error_message','Invalid Url');
+          return view('error');	
+    	}
+        
     }
     
 

@@ -13,6 +13,12 @@
                             {!! session()->get('url_message') !!}
                         </div>
                     @endif
+                     @if(session()->has('error_message'))
+                        <div class="alert alert-danger" role="alert">
+                          <i class="fa fa-exclamation-circle"></i>
+                            {{ session()->get('error_message') }}
+                        </div>
+                    @endif
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/save_url') }}">
                         {{ csrf_field() }}
    
